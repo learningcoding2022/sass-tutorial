@@ -1,0 +1,67 @@
+//create a map of different breakpoints:
+$breakpoints: (
+  'xs': 0,
+  'sm': 480px,
+  'md': 720px,
+  'lg': 960px,
+  'xl': 1200px,
+);
+
+@mixin xs {
+  @media (min-width: map-get($breakpoints, 'xs')) {
+    @content; //allows you to apply content when you use @xs. For ex: @xs {font-size: 10px;}
+  }
+}
+
+@mixin sm {
+  @media (min-width: map-get($breakpoints, 'sm')) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: map-get($breakpoints, 'md')) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: map-get($breakpoints, 'lg')) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: map-get($breakpoints, 'xl')) {
+    @content;
+  }
+}
+
+//allows you to apply styles to a very specific breakpoint that you can use this for
+@mixin breakpoint($bp: 0) {
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+
+//can use this to test out the above
+.responsive-test {
+  @include xs {
+    color: red;
+  }
+  @include sm {
+    color: blue;
+  }
+  @include md {
+    color: green;
+  }
+  @include lg {
+    color: purple;
+  }
+  @include xl {
+    color: orange;
+  }
+  @include breakpoint(1400px) {
+    color: pink;
+  }
+}
